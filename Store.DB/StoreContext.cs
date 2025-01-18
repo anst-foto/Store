@@ -17,6 +17,7 @@ public class StoreContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_connectionString);
+        optionsBuilder.UseNpgsql(_connectionString,
+            o => o.MapEnum<OrderType>("order_type"));
     }
 }

@@ -19,4 +19,7 @@ public class StoreContextFactory : IDesignTimeDbContextFactory<StoreContext>
 
         return new StoreContext(connectionString);
     }
+
+    private string[] _args => Array.Empty<string>();
+    public StoreContext CreateDbContext() => CreateDbContext(_args);
 }

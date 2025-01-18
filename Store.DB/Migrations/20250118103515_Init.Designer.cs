@@ -12,7 +12,7 @@ using Store.DB;
 namespace Store.DB.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20250118090027_Init")]
+    [Migration("20250118103515_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -23,83 +23,116 @@ namespace Store.DB.Migrations
                 .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "order_type", new[] { "card", "sell" });
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("Store.DB.Customer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("FistName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("first_name");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .IsRequired()
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_active")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("last_name");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("login");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("password");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.HasIndex("FirstName");
+
+                    b.HasIndex("LastName");
+
+                    b.HasIndex("Login")
+                        .IsUnique();
+
+                    b.ToTable("table_customers");
                 });
 
             modelBuilder.Entity("Store.DB.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("customer_id");
 
                     b.Property<string>("ProductsJson")
                         .IsRequired()
-                        .HasColumnType("jsonb");
+                        .HasColumnType("jsonb")
+                        .HasColumnName("products");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
+                    b.Property<OrderType>("Type")
+                        .IsRequired()
+                        .HasColumnType("order_type")
+                        .HasColumnName("type")
+                        .HasDefaultValue(OrderType.Card);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("table_orders");
                 });
 
             modelBuilder.Entity("Store.DB.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .IsRequired()
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_active")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
+                        .IsRequired()
+                        .HasColumnType("money")
+                        .HasColumnName("price");
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("integer");
+                        .IsRequired()
+                        .HasColumnType("integer")
+                        .HasColumnName("quantity");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.HasIndex("Name");
+
+                    b.ToTable("table_products");
                 });
 
             modelBuilder.Entity("Store.DB.Order", b =>
@@ -107,7 +140,7 @@ namespace Store.DB.Migrations
                     b.HasOne("Store.DB.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
