@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Store.DB;
 
@@ -18,19 +19,18 @@ public class Order : IEquatable<Order>
 
     [Column("customer_id")]
     public Guid CustomerId { get; set; }
-    public Customer Customer { get; set; }
+    public virtual Customer Customer { get; set; }
 
     [Column("type")]
     public OrderType Type { get; set; }
 
-    [NotMapped]
-    public Dictionary<Product, int> Products { get; set; }
+    [NotMapped] public Dictionary<Guid, int> Products { get; set; }
     [Column("products", TypeName = "jsonb")]
     [Required]
     public string ProductsJson
     {
         get => JsonSerializer.Serialize(Products);
-        set => Products = JsonSerializer.Deserialize<Dictionary<Product, int>>(value);
+        set => Products = JsonSerializer.Deserialize<Dictionary<Guid, int>>(value);
     }
 
     #region IEquatable

@@ -43,7 +43,7 @@ public class Customer : IEquatable<Customer>
     [Required]
     public bool IsActive { get; set; } =  true;
 
-    public List<Order> Orders { get; set; }
+    public virtual List<Order> Orders { get; set; }
 
     #region IEquatable
 

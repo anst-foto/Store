@@ -20,5 +20,29 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Store.DB\Store.DB.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Pages\AuthPage\AuthPageView.axaml.cs">
+      <DependentUpon>AuthPageView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\MainPage\MainPageView.axaml.cs">
+      <DependentUpon>AuthPageView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\ProductsPage\ProductsPageView.axaml.cs">
+      <DependentUpon>MainPageView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\ProfilePage\ProfilePageView.axaml.cs">
+      <DependentUpon>MainPageView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
