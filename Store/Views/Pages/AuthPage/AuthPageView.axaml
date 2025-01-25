@@ -1,0 +1,23 @@
+﻿<store:Page xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Store.ViewModels"
+             xmlns:store="clr-namespace:Store"
+             xmlns:c="clr-namespace:Store.Components"
+
+             x:Class="Store.Views.AuthPageView"
+             x:DataType="vm:AuthPageViewModel">
+    <store:Page.DataContext>
+        <vm:AuthPageViewModel/>
+    </store:Page.DataContext>
+
+    <Grid RowDefinitions="*,*">
+        <c:Input LabelContent="Login"
+                 PlaceholderContent="Введите ваш логин"
+                 InputText="{Binding Login}"
+                 Grid.Row="0"/>
+        <c:Input LabelContent="Password"
+                 PlaceholderContent="Введите ваш пароль"
+                 InputText="{Binding Password}"
+                 Grid.Row="1"/>
+    </Grid>
+</store:Page>

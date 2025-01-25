@@ -1,0 +1,16 @@
+﻿<store:Page xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Store.ViewModels"
+             xmlns:store="clr-namespace:Store"
+             xmlns:c="clr-namespace:Store.Components"
+
+             x:Class="Store.Views.ProductsPageView"
+             x:DataType="vm:ProductsPageViewModel">
+    <store:Page.DataContext>
+        <vm:ProductsPageViewModel/>
+    </store:Page.DataContext>
+
+    <Grid RowDefinitions="*,*">
+
+    </Grid>
+</store:Page>

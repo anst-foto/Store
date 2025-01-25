@@ -1,16 +1,44 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Store.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+
              x:Class="Store.Views.MainView"
              x:DataType="vm:MainViewModel">
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainViewModel />
-    </Design.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="TemplateSplitViewPane"
+                          DataType="{x:Type vm:TogglePagesItem}">
+                <TextBlock Text="{Binding PageTitle}"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <UserControl.DataContext>
+        <vm:MainViewModel />
+    </UserControl.DataContext>
+
+    <SplitView IsPaneOpen="{Binding IsPaneOpen}"
+               DisplayMode="CompactInline"
+               OpenPaneLength="300"
+               CompactPaneLength="30">
+        <SplitView.Pane>
+            <StackPanel Orientation="Vertical">
+                <Button Content="->"
+                        Command="{Binding PaneOpen}"/>
+
+                <ListBox ItemsSource="{Binding TogglePages}"
+                         SelectedItem="{Binding SelectedPage}"
+                         ItemTemplate="{StaticResource TemplateSplitViewPane}"
+                         SelectionMode="Toggle"/>
+            </StackPanel>
+        </SplitView.Pane>
+
+        <DockPanel LastChildFill="True"
+                   DataContext="{Binding SelectedPage}">
+            <TextBlock Text="{Binding PageTitle}"
+                       DockPanel.Dock="Top"/>
+
+            <TransitioningContentControl Content="{Binding PageViewModel}"/>
+        </DockPanel>
+    </SplitView>
 </UserControl>

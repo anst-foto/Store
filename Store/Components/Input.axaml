@@ -1,0 +1,17 @@
+﻿<store:Component xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:store="clr-namespace:Store"
+
+             x:Class="Store.Components.Input"
+             x:Name="Component">
+    <Grid ColumnDefinitions="*, 2*">
+        <Label Target="{Binding ElementName=InputElement}"
+               Content="{Binding ElementName=Component, Path=LabelContent, Mode=OneWay}"
+               Grid.Column="0"/>
+        <TextBox x:Name="InputElement"
+                 Text="{Binding ElementName=Component, Path=InputText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Watermark="{Binding ElementName=Component, Path=PlaceholderContent, Mode=OneWay}"
+                 UseFloatingWatermark="True"
+                 Grid.Column="1"/>
+    </Grid>
+</store:Component>
