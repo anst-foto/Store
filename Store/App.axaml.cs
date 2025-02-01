@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Store.DB;
 using Store.ViewModels;
 using Store.Views;
 
@@ -8,6 +9,14 @@ namespace Store;
 
 public partial class App : Application
 {
+    public StoreContext StoreContext { get; }
+
+    public App()
+    {
+        var storeContextFactory = new StoreContextFactory();
+        StoreContext = storeContextFactory.CreateDbContext();
+    }
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);

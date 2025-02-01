@@ -13,7 +13,6 @@ public class MainViewModel : ViewModelBase
     public ObservableCollection<TogglePagesItem> TogglePages { get; set; } =
     [
         new() { PageViewModel = new AuthPageViewModel() },
-        new() { PageViewModel = new MainPageViewModel() },
         new() { PageViewModel = new ProductsPageViewModel() },
         new() { PageViewModel = new ProfilePageViewModel() }
     ];

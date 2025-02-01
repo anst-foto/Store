@@ -10,7 +10,12 @@
         <vm:ProfilePageViewModel/>
     </store:Page.DataContext>
 
-    <Grid RowDefinitions="*,*">
-
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <c:Input LabelContent="Фамилия"
+                 InputText="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <c:Input LabelContent="Имя"
+                 InputText="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <c:Input LabelContent="email"
+                 InputText="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
 </store:Page>
