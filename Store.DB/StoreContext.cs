@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
+using Microsoft.EntityFrameworkCore;
 
 namespace Store.DB;
 
@@ -20,6 +23,6 @@ public class StoreContext : DbContext
         optionsBuilder
             .UseLazyLoadingProxies()
             .UseNpgsql(_connectionString,
-            o => o.MapEnum<OrderType>("order_type"));
+                o => o.MapEnum<OrderType>("order_type"));
     }
 }

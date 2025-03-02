@@ -1,21 +1,21 @@
 ﻿<store:Page xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:Store.ViewModels"
-             xmlns:store="clr-namespace:Store"
-             xmlns:c="clr-namespace:Store.Components"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:vm="clr-namespace:Store.ViewModels"
+            xmlns:store="clr-namespace:Store"
+            xmlns:c="clr-namespace:Store.Components"
 
-             x:Class="Store.Views.ProfilePageView"
-             x:DataType="vm:ProfilePageViewModel">
+            x:Class="Store.Views.ProfilePageView"
+            x:DataType="vm:ProfilePageViewModel">
     <store:Page.DataContext>
-        <vm:ProfilePageViewModel/>
+        <vm:ProfilePageViewModel />
     </store:Page.DataContext>
 
     <StackPanel Orientation="Vertical">
         <c:Input LabelContent="Фамилия"
-                 InputText="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 InputText="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <c:Input LabelContent="Имя"
-                 InputText="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 InputText="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <c:Input LabelContent="email"
-                 InputText="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 InputText="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
 </store:Page>

@@ -8,7 +8,7 @@
         <ResourceDictionary>
             <DataTemplate x:Key="TemplateSplitViewPane"
                           DataType="{x:Type vm:TogglePagesItem}">
-                <TextBlock Text="{Binding PageTitle}"/>
+                <TextBlock Text="{Binding PageTitle}" />
             </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -24,21 +24,21 @@
         <SplitView.Pane>
             <StackPanel Orientation="Vertical">
                 <Button Content="->"
-                        Command="{Binding PaneOpen}"/>
+                        Command="{Binding PaneOpen}" />
 
                 <ListBox ItemsSource="{Binding TogglePages}"
                          SelectedItem="{Binding SelectedPage}"
                          ItemTemplate="{StaticResource TemplateSplitViewPane}"
-                         SelectionMode="Toggle"/>
+                         SelectionMode="Toggle" />
             </StackPanel>
         </SplitView.Pane>
 
         <DockPanel LastChildFill="True"
                    DataContext="{Binding SelectedPage}">
             <TextBlock Text="{Binding PageTitle}"
-                       DockPanel.Dock="Top"/>
+                       DockPanel.Dock="Top" />
 
-            <TransitioningContentControl Content="{Binding PageViewModel}"/>
+            <TransitioningContentControl Content="{Binding PageViewModel}" />
         </DockPanel>
     </SplitView>
 </UserControl>

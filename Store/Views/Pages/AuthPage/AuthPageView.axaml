@@ -22,12 +22,12 @@
             <c:Input LabelContent="Password"
                      PlaceholderContent="Введите ваш пароль"
                      InputText="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     DockPanel.Dock="Top"/>
+                     DockPanel.Dock="Top" />
             <StackPanel Orientation="Horizontal">
                 <Button Content="Войти"
-                        Command="{Binding CommandLogin}"/>
+                        Command="{Binding CommandLogin}" />
                 <Button Content="Отмена"
-                        Command="{Binding CommandCancel}"/>
+                        Command="{Binding CommandCancel}" />
             </StackPanel>
         </DockPanel>
     </Grid>

@@ -1,4 +1,7 @@
-﻿using Avalonia;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
+using Avalonia;
 
 namespace Store.Components;
 
@@ -6,8 +9,10 @@ public partial class Input : Component
 {
     public static readonly StyledProperty<string> LabelContentProperty =
         AvaloniaProperty.Register<Input, string>(nameof(LabelContent));
+
     public static readonly StyledProperty<string> PlaceholderContentProperty =
         AvaloniaProperty.Register<Input, string>(nameof(PlaceholderContent));
+
     public static readonly StyledProperty<string> InputTextProperty =
         AvaloniaProperty.Register<Input, string>(nameof(InputText));
 

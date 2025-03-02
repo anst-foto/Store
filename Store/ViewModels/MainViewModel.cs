@@ -1,8 +1,8 @@
-﻿using System;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
 using System.Collections.ObjectModel;
 using System.Reactive;
-using DynamicData.Binding;
-using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
@@ -16,6 +16,7 @@ public class MainViewModel : ViewModelBase
         new() { PageViewModel = new ProductsPageViewModel() },
         new() { PageViewModel = new ProfilePageViewModel() }
     ];
+
     [Reactive] public TogglePagesItem? SelectedPage { get; set; }
 
     [Reactive] public bool IsPaneOpen { get; set; } = true;

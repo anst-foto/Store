@@ -20,11 +20,11 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)"/>
-    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Store.DB\Store.DB.csproj" />
+    <ProjectReference Include="..\Store.DB\Store.DB.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
